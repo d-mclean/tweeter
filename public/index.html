@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <!-- NavBar CSS -->
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <!-- New Tweet CSS -->
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
@@ -32,14 +34,14 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-<section class="new-tweet">
-  <h2>Compose Tweet</h2>
-  <form>
-    <textarea name="text" placeholder="What are you humming about?"></textarea>
-    <input type="submit" value="Tweet">
-    <span class="counter">140</span>
-  </form>
-</section>
+      <section class="new-tweet">
+        <h2>Compose Tweet</h2>
+        <form action="/tweets/" method="post" enctype="application/x-www-form-urlencoded">
+          <textarea name="text" placeholder="What are you humming about?"></textarea>
+          <br /><input type="submit" value="Tweet">
+          <span class="counter">140</span>
+        </form>
+      </section>
 <p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p>
