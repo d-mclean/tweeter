@@ -1,0 +1,35 @@
+#nav-bar {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: #00a087;
+  color: #e8fdff;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  font-style: italic;
+  font-size: 200%;
+  line-height: 80px;
+  float: left;
+
+}
+
+#nav-bar .logo {
+  background-color: #00a087;
+  width: 80px;
+  height: 80px;
+  float: left;
+
+}
+#nav-bar .header {
+  background-color: #00a087;
+  color: #e8fdff;
+  height: 80px;
+  position: fixed;
+  font-style: italic;
+  font-size: 100%;
+  line-height: 80px;
+  float: left;
+  margin: 0px 0px 0px 10px;
+}
