@@ -30,3 +30,105 @@ body {
   vertical-align: center;
   background: white;
  }
+
+
+ /*******************************************************************/
+
+#tweets-container .tweet{
+  background-color: white;
+  border-radius: 5px;
+  border:2px solid #b2b4ba;
+  margin-left: 2em;
+  margin-right: 2em;
+  height: 255px;
+  position: relative;
+}
+
+#tweets-container .tweet header {
+  background-color: gray;
+  color: #e8fdff;
+  height: 80px;
+  position: relative
+  font-style: italic;
+  font-size: 100%;
+  line-height: 80px;
+  float: left;
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 350px;
+
+  /*
+  margin: 0px 0px 0px 10px;
+  */
+}
+
+#tweets-container .tweet footer {
+  background-color: white;
+  color: gray;
+  position: relative;
+  font-style: italic;
+  font-size: 100%;
+  float: left;
+  margin-left: 0em;
+  margin-right: 0em;
+  width: 100%;
+  border-top: thin solid gray;
+  text-align: left;
+  top: 0px;
+  text-indent: 10px;
+  padding-top: 10px;
+  /*
+  margin: 0px 0px 0px 10px;
+  line-height: 80px;
+  */
+}
+
+#tweets-container .tweet h2 {
+    text-align: left;
+    margin-left: 2em;
+    margin-right: 0.85em;
+    position: relative;
+    top: -35px;
+  /*
+    overflow: hidden;
+  background-color: black;
+  color: #e8fdff;
+  left: 0px;
+  top: 0px;
+  position: relative;
+  float: left;
+  margin: 0px 0px 10px 50px;
+  text-align: left;
+  height: 40px;*/
+}
+
+#tweets-container .tweet h3 {
+    text-align: right;
+    margin-left: 2em;
+    margin-right: 0.85em;
+    position: relative;
+    top: -125px;
+}
+
+
+#tweets-container .tweet p {
+    text-align: left;
+    margin-left: 0.85em;
+    margin-right: 0.85em;
+    position: relative;
+    top: 40px;
+    left: -70px;
+    font-size: 150%;
+    height:160px;
+}
+
+#tweets-container .tweet .profile-pic{
+  background-color: gray;
+  width: 80px;
+  height: 80px;
+  float: left;
+  position: relative;
+  left: 0px;
+  top: -80px;
+  padding: 10px;
+}
