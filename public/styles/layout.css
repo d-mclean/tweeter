@@ -48,10 +48,10 @@ body {
   background-color: gray;
   color: #e8fdff;
   height: 80px;
-  position: relative
+  position: relative;
   font-style: italic;
   font-size: 100%;
-  line-height: 80px;
+  /*line-height: 80px;*/
   float: left;
   margin-left: 2em;
   margin-right: 2em;
@@ -88,7 +88,8 @@ body {
     margin-left: 2em;
     margin-right: 0.85em;
     position: relative;
-    top: -35px;
+    top: 0px;
+    margin-top: 10px;
   /*
     overflow: hidden;
   background-color: black;
@@ -107,7 +108,8 @@ body {
     margin-left: 2em;
     margin-right: 0.85em;
     position: relative;
-    top: -125px;
+    top: 0px;
+    margin-top: -40px;
 }
 
 
@@ -131,4 +133,46 @@ body {
   left: 0px;
   top: -80px;
   padding: 10px;
+}
+
+#tweets-container .btn-flag {
+  /*width: 25px;
+  height: 25px;*/
+  float: right;
+  position: relative;
+  margin-right: 90px;
+  top: -18px;
+}
+
+#tweets-container .btn-retweet {
+  /*width: 25px;
+  height: 25px;*/
+  float: right;
+  position: relative;
+  margin-right: -80px;
+  top: -18px;
+}
+
+#tweets-container .btn-like {
+  /*width: 25px;
+  height: 25px;*/
+  float: right;
+  position: relative;
+  margin-right: -110px;
+  top: -18px;
+}
+
+
+#tweets-container .btn-flag, .btn-retweet, .btn-like {
+  background-color: powderblue;
+  transition: background-color .5s;
+}
+
+#tweets-container .btn-flag:hover, .btn-retweet:hover, .btn-like:hover {
+  background-color: gold;
+}
+
+#status-area .flash_message {
+
+    color: red;
 }

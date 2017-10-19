@@ -10,7 +10,7 @@
   position: fixed;
   font-style: italic;
   font-size: 200%;
-  line-height: 80px;
+  /*line-height: 80px;*/
   float: left;
 
 }
@@ -20,7 +20,14 @@
   width: 80px;
   height: 80px;
   float: left;
+}
 
+#nav-bar .compose-button {
+  width: 120px;
+  height: 50px;
+  float: right;
+  font-size: 70%;
+  margin-top: 15px;
 }
 
 #nav-bar .header {

@@ -1,0 +1,49 @@
+.new-tweet {
+  background-color: #eee;
+  border-radius: 5px;
+  border:2px solid #b2b4ba;
+  margin-left: 2em;
+  margin-right: 2em;
+  height: 155px;
+/*
+    text-decoration: underline;
+*/
+}
+
+.container .new-tweet textarea {
+  width: 90%;
+  background-color: white;
+  color: black;
+}
+
+.container .new-tweet h2  {
+    text-align: left;
+    border-bottom: thin solid black;
+    margin-left: 0.75em;
+    margin-right: 0.85em;
+
+/*
+    border-style: solid;
+  background-color: #00a087;
+  color: #e8fdff;
+*/
+}
+
+.container .new-tweet .counter {
+  float: right;
+  margin-right: 1.5em;
+
+}
+
+.container .new-tweet  .red {
+  color:red;
+}
+
+.container .new-tweet .black {
+  color: black;
+}
+
+.container .new-tweet input {
+  float: left;
+  margin-left: 1em;
+}
