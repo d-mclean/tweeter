@@ -4,6 +4,7 @@
   border:2px solid #b2b4ba;
   margin-left: 2em;
   margin-right: 2em;
+  margin-bottom: 0.6em;
   height: 155px;
 /*
     text-decoration: underline;
@@ -35,7 +36,7 @@
 
 }
 
-.container .new-tweet  .red {
+.container .new-tweet .red {
   color:red;
 }
 

@@ -9,16 +9,20 @@ createTweetElement that takes in a tweet object and is responsible for
 returning a tweet <article> element containing the entire HTML structure of the tweet.
 
 */
+
+let strMsg = '';
+
 function createTweetElement(objTweet){
 
-  let $tweet = $('<article>').addClass('tweet')
+  let $tweet = $('<article></article>').addClass('tweet')
   .append(`<header><h2>${escape(objTweet.user.name)}</h2> <h3>${escape(objTweet.user.handle)}</h3></header>`)
   .append(`<img class = \'profile-pic\' src=\'${escape(objTweet.user.avatars.small)}\'>`)
   .append(`<p>${escape(objTweet.content.text)}</p>`)
   .append(`<footer>${escape(dateDiff(objTweet.created_at))}</footer>`)
-  .append('<a class = \'btn-flag\' href=\'#\' style=\'opacity:0\'>flag</a>')
-  .append('<a class = \'btn-retweet\' href=\'#\' style=\'opacity:0\'>retweet</a>')
-  .append('<a class = \'btn-like\' href=\'#\' style=\'opacity:0\'>like</a>');
+  .append(`<a class = \'btn-flag ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>flag</a>`)
+  .append(`<a class = \'btn-retweet ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>retweet</a>`)
+  .append(`<a class = \'btn-like ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>like</a>`);
+
   // let $tweet = $('<article />', {
   //   header: 'Tweet User @TweetUser',
   //   text: 'Tweet message here',
@@ -28,11 +32,11 @@ function createTweetElement(objTweet){
   // Add hover functionality to display buttons when hovering.
   $tweet.hover(
     function() {
-      $('#tweets-container .btn-flag, .btn-retweet, .btn-like').fadeTo(200,1);
+      //$('#tweets-container .btn-flag, .btn-retweet, .btn-like').fadeTo(200,1);
+      $(`#tweets-container .${escape(objTweet._id)}`).fadeTo(200,1);
     }, function () {
-      $('#tweets-container .btn-flag, .btn-retweet, .btn-like').fadeTo(200,0);
+      $(`#tweets-container .${escape(objTweet._id)}`).fadeTo(200,0);
     });
-
 
   return ($tweet);
 }
@@ -175,25 +179,52 @@ $(document).ready( function(){
 })(jQuery);
 
 $('.new-tweet input').click(function() {
+  // Get the text of the tweet to validate it.
+  let text = $('.new-tweet textarea').val();
 
-    $('#status-area').flash_message({
-        text: 'Error!',
-        how: 'append'
-    });
+  // If there's a problem, let the user know via flash message (string updated here before being displayed).
+  if (text.trim() === "" || text === null){
+    strMsg = 'What are you humming about?';
+  } else if (text.length > 140){
+    strMsg = 'Your tweet exceeds 140 characters!';
+  } else {
+    strMsg = '';
+  }
+
+  $('#status-area').flash_message({
+      text: strMsg,
+      how: 'append'
+  });
 });
   //$.post('/tweets/', $('#new-tweet .form').serialize());
   // If user submits a tweet, serialize/POST the data but do not leave the page.
   $('.new-tweet form').on("submit", function (event) {
+    // Avoid the default behaviour as we want to remain on the main page.
+    event.preventDefault();
 
-    // TODO: add data validation/sanitize input; also validate msg length.
+    // If the flash message is an empty string, i.e. no problems, POST the tweet.
+    // Skip POSTing under all other situations (including null/invalid messages).
+    switch (strMsg){
+      default:
+      case 'What are you humming about?':
+      case 'Your tweet exceeds 140 characters!':
+        // No op really needed here (i.e. don't POST).
+        break;
+      case '':
+        $.post('/tweets', $(this).serialize());
+        loadTweets();
+        event.preventDefault();
+        break;
+    }
+    /*
     if (this.text.value === "" || this.text.value === null){
-      console.log("invalid input");
+      event.preventDefault();
+    } else {
+      $.post('/tweets', $(this).serialize());
+      loadTweets();
       event.preventDefault();
     }
-
-    $.post('/tweets', $(this).serialize());
-    loadTweets();
-    event.preventDefault();
+*/
   })
 
   // Added function here from the exercises (w3d3)
