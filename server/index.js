@@ -7,6 +7,8 @@ const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
 
+const moment = require('moment');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -28,16 +30,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
 
   // The `data-helpers` module provides an interface to the database of tweets.
-  // This simple interface layer has a big benefit: we could switch out the
-  // actual database it uses and see little to no changes elsewhere in the code
-  // (hint hint).
-  //
-  // // Because it exports a function that expects the `db` as a parameter, we can
-  // // require it and pass the `db` parameter immediately:
-  // const DataHelpers = require("./lib/data-helpers.js")(db);
-
-  // Because it exports a function that expects the `db` as a parameter, we can
-  // require it and pass the `db` parameter immediately:
   const DataHelpers = require("./lib/data-helpers.js")(db);
 
   // The `tweets-routes` module works similarly: we pass it the `DataHelpers` object

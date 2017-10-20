@@ -10,6 +10,7 @@ returning a tweet <article> element containing the entire HTML structure of the 
 
 */
 
+// String used for displaying messages to the user.
 let strMsg = '';
 
 function createTweetElement(objTweet){
@@ -22,12 +23,6 @@ function createTweetElement(objTweet){
   .append(`<a class = \'btn-flag ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>flag</a>`)
   .append(`<a class = \'btn-retweet ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>retweet</a>`)
   .append(`<a class = \'btn-like ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>like</a>`);
-
-  // let $tweet = $('<article />', {
-  //   header: 'Tweet User @TweetUser',
-  //   text: 'Tweet message here',
-  //   footer: '10 days ago'
-  // });
 
   // Add hover functionality to display buttons when hovering.
   $tweet.hover(
@@ -61,19 +56,6 @@ function renderTweets(arrTweets){
           let eleTweet = createTweetElement(value);
           $('#tweets-container').append(eleTweet);
         });
-
-  // for (let i = 0; i < arrTweets.length; i++){
-  //   let eleTweet = createTweetElement(arrTweets[i]);
-  //   $('#tweets-container').append(eleTweet);
-  // }
-
-/*
-  jQuery.each(arrTweets, function (i, tweet) {
-
-    let eleTweet = createTweetElement(arrTweets[i]);
-    $('#tweets-container').append(eleTweet);
-  });
-  */
 }
 
 // This function removes all tweets on screen (i.e. before reloading after a new tweet).
@@ -88,67 +70,31 @@ function escape (strInput){
   return div.innerHTML;
 }
 
+// This function takes a create date and returns a message (string) displaying how old the tweet is.
 function dateDiff(dateInput){
-  let msDiff = Date.now() - dateInput;
+  // Get the date difference as a nice looking message from moment.js.
+  let strDateDiff = moment(dateInput).fromNow();
 
-  return Math.floor(msDiff / 86400000) + " days ago";
+  // The fromNow() function only displays in seconds or longer so this while() loop was added
+  //  for when a new tweet is entered and displayed in less than one second.  Once we know the
+  //  message returned contains the phrase 'ago', it's appropriate to display.
+  while (strDateDiff.search('ago') === -1){
+    strDateDiff = moment(dateInput).fromNow();
+  }
+
+  return strDateDiff;
 }
 
-// Fake data taken from tweets.json
-var data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-];
-
+// This function clears out the textarea and resets the character counter after a new tweet.
+function resetTweetForm(){
+  $('.new-tweet textarea').val('');
+  $('.new-tweet .counter').text('140');
+}
 
 $(document).ready( function(){
 
-
+// This snippet of code was modified to act as a flash message for displaying messages to the user.
 // Source: https://jsfiddle.net/BaylorRae/vwvAd/
-// - displays the flash message but this code should be moved
-// - maybe try moving to the form submit stuff??
 (function($) {
     $.fn.flash_message = function(options) {
 
@@ -184,7 +130,7 @@ $('.new-tweet input').click(function() {
 
   // If there's a problem, let the user know via flash message (string updated here before being displayed).
   if (text.trim() === "" || text === null){
-    strMsg = 'What are you humming about?';
+    strMsg = 'What are you humming about? [no text]';
   } else if (text.length > 140){
     strMsg = 'Your tweet exceeds 140 characters!';
   } else {
@@ -196,7 +142,7 @@ $('.new-tweet input').click(function() {
       how: 'append'
   });
 });
-  //$.post('/tweets/', $('#new-tweet .form').serialize());
+
   // If user submits a tweet, serialize/POST the data but do not leave the page.
   $('.new-tweet form').on("submit", function (event) {
     // Avoid the default behaviour as we want to remain on the main page.
@@ -206,7 +152,7 @@ $('.new-tweet input').click(function() {
     // Skip POSTing under all other situations (including null/invalid messages).
     switch (strMsg){
       default:
-      case 'What are you humming about?':
+      case 'What are you humming about? [no text]':
       case 'Your tweet exceeds 140 characters!':
         // No op really needed here (i.e. don't POST).
         break;
@@ -214,17 +160,10 @@ $('.new-tweet input').click(function() {
         $.post('/tweets', $(this).serialize());
         loadTweets();
         event.preventDefault();
+        // Clear out the tweet info after inserting a new tweet.
+        resetTweetForm();
         break;
     }
-    /*
-    if (this.text.value === "" || this.text.value === null){
-      event.preventDefault();
-    } else {
-      $.post('/tweets', $(this).serialize());
-      loadTweets();
-      event.preventDefault();
-    }
-*/
   })
 
   // Added function here from the exercises (w3d3)
@@ -256,36 +195,3 @@ $('.new-tweet input').click(function() {
   });
 
 });
-/*------------------TEST INDIVIDUAL TWEETS-----------------------------------------------
-// Test / driver code (temporary). Eventually will get this from the server.
-var tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": {
-      "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-      "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-      "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-    },
-    "handle": "@SirIsaac"
-  },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
-  },
-  "created_at": 1461116232227
-}
-
-var $tweet = createTweetElement(tweetData);
-
-// Test / driver code (temporary)
-console.log($tweet); // to see what it looks like
-$('#tweets-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
-
-
-console.log(tweetData)
-
-
-$(document).ready( function(){
- $('#tweets-container').append($tweet);
-
-});
-*/
