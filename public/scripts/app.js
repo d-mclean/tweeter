@@ -1,14 +1,8 @@
 /*
- * Client-side JS logic goes here
+ * Client-side JS logic here
  * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
+ * DOM work in jQuery's document ready function
  */
-
-/*
-createTweetElement that takes in a tweet object and is responsible for
-returning a tweet <article> element containing the entire HTML structure of the tweet.
-
-*/
 
 // String used for displaying messages to the user.
 let strMsg = '';
@@ -16,6 +10,7 @@ let strMsg = '';
 // This function creates the html element for the given record (tweet).
 function createTweetElement(objTweet){
 
+  // Create the basic tweet object from db record.
   let $tweet = $('<article></article>').addClass('tweet')
   .append(`<header><h2>${escape(objTweet.user.name)}</h2> <h3>${escape(objTweet.user.handle)}</h3></header>`)
   .append(`<img class = \'profile-pic\' src=\'${escape(objTweet.user.avatars.small)}\'>`)
@@ -24,7 +19,6 @@ function createTweetElement(objTweet){
   .append(`<div id=\'div-btns\'><p title=\'flag\' class=\'btn-flag-id ${escape(objTweet._id)}\' id=\'id-flag-${escape(objTweet._id)}\'href=\'#\' style=\'opacity:0\'>👍 </p>
     <p title=\'retweet\' class=\'btn-retw-id ${escape(objTweet._id)}\' id=\'id-retw-${escape(objTweet._id)}\'href=\'#\' style=\'opacity:0\'>🗨</p>
     <p title=\'like\' class=\'btn-like-id ${escape(objTweet._id)}\' id=\'id-like-${escape(objTweet._id)}\'href=\'#\' style=\'opacity:0\'>😐</p></div>`)
-
 
   // Add hover functionality to display buttons when hovering.
   $tweet.hover(
@@ -73,23 +67,22 @@ function createTweetElement(objTweet){
 // This function takes an array of tweet objects and appends each one into the #tweets-container.
 function renderTweets(arrTweets){
   let sorted = arrTweets.sort(function (a, b) {
-          if (a.created_at > b.created_at) {
-                return -1;
-              }
-            if (a.created_at < b.created_at) {
-               return 1;
-            }
+    if (a.created_at > b.created_at) {
+      return -1;
+    }
+    if (a.created_at < b.created_at) {
+      return 1;
+    }
 
-            return 0;
+    return 0;
   });
 
-         var str = '';
+  let str = '';
 
-        $.each(sorted, function(index, value) {
-          //str += ' ' + value.created_at;
-          let eleTweet = createTweetElement(value);
-          $('#tweets-container').append(eleTweet);
-        });
+  $.each(sorted, function(index, value) {
+    let eleTweet = createTweetElement(value);
+    $('#tweets-container').append(eleTweet);
+  });
 }
 
 // This function removes all tweets on screen (i.e. before reloading after a new tweet).
@@ -127,36 +120,36 @@ function resetTweetForm(){
 
 $(document).ready( function(){
 
-// This snippet of code was modified to act as a flash message for displaying messages to the user.
-// Source: https://jsfiddle.net/BaylorRae/vwvAd/
-(function($) {
-    $.fn.flash_message = function(options) {
+  // This snippet of code was modified to act as a flash message for displaying messages to the user.
+  // Source: https://jsfiddle.net/BaylorRae/vwvAd/
+  (function($) {
+      $.fn.flash_message = function(options) {
 
-      options = $.extend({
-        text: 'Done',
-        time: 1000,
-        how: 'before',
-        class_name: ''
-      }, options);
+        options = $.extend({
+          text: 'Done',
+          time: 1000,
+          how: 'before',
+          class_name: ''
+        }, options);
 
-      return $(this).each(function() {
-        if( $(this).parent().find('.flash_message').get(0) )
-          return;
+        return $(this).each(function() {
+          if( $(this).parent().find('.flash_message').get(0) )
+            return;
 
-        var message = $('<span />', {
-          'class': 'flash_message ' + options.class_name,
-          text: options.text
-        }).hide().fadeIn('fast');
+          var message = $('<span />', {
+            'class': 'flash_message ' + options.class_name,
+            text: options.text
+          }).hide().fadeIn('fast');
 
-        $(this)[options.how](message);
+          $(this)[options.how](message);
 
-        message.delay(options.time).fadeOut('normal', function() {
-          $(this).remove();
+          message.delay(options.time).fadeOut('normal', function() {
+            $(this).remove();
+          });
+
         });
-
-      });
-    };
-})(jQuery);
+      };
+  })(jQuery);
 
 $('.new-tweet input').click(function() {
   // Get the text of the tweet to validate it.
@@ -200,7 +193,7 @@ $('.new-tweet input').click(function() {
     }
   })
 
-  // Added function here from the exercises (w3d3)
+  // Added function here from the exercises (w3d3) to essentially refresh the tweets.
   function loadTweets(){
     $.ajax({
       method: 'GET',
@@ -208,8 +201,6 @@ $('.new-tweet input').click(function() {
       dataType: 'json',
       success: function(results){
         removeTweets();
-        //jsonTweets = $.parseJSON(results);
-        //jsonTweets = JSON.parse(results);
         renderTweets(results);
       }
     })
@@ -217,11 +208,12 @@ $('.new-tweet input').click(function() {
 
   loadTweets();
 
-  //renderTweets(jsonTweets);
-
   // Event handler controlling the 'compose tweet' form.  When Compose is clicked,
   //  the form is displayed (or hidden) and the focus is set to the textarea.
   $('.compose-button').click(function() {
+    // Lets update the class whenever the button is clicked (and add changes via css).
+    !$(this).hasClass('clicked') ? $(this).addClass('clicked') : $(this).removeClass('clicked');
+
     $('.new-tweet').slideToggle('slow', function() {
         $(".new-tweet textarea").focus();
     });

@@ -1,3 +1,8 @@
+/*  20171020 DM
+    This script handles the character counter for tweets in order to do some
+      basic error handling (i.e. flag red if there's no text or > 140 letters).
+*/
+
 $(document).ready( function(){
   $('textarea').on('input', function(){
 

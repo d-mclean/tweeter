@@ -9,7 +9,6 @@
   width: 100%;
   position: fixed;
   font-size: 200%;
-  /*line-height: 80px;*/
   float: left;
 
 }
@@ -22,11 +21,20 @@
 }
 
 #nav-bar .compose-button {
+  background-color: white;
   width: 120px;
-  height: 50px;
+  height: 52px;
   float: right;
-  font-size: 70%;
+  font-size: 60%;
   margin-top: 15px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+#nav-bar .compose-button.clicked {
+  background-color: #d9eff7;
+  color: #00a087
+
 }
 
 #nav-bar .header {

@@ -6,9 +6,6 @@
   margin-right: 2em;
   margin-bottom: 0.6em;
   height: 155px;
-/*
-    text-decoration: underline;
-*/
 }
 
 .container .new-tweet textarea {
@@ -18,22 +15,15 @@
 }
 
 .container .new-tweet h2  {
-    text-align: left;
-    border-bottom: thin solid black;
-    margin-left: 0.75em;
-    margin-right: 0.85em;
-
-/*
-    border-style: solid;
-  background-color: #00a087;
-  color: #e8fdff;
-*/
+  text-align: left;
+  border-bottom: thin solid black;
+  margin-left: 0.75em;
+  margin-right: 0.85em;
 }
 
 .container .new-tweet .counter {
   float: right;
   margin-right: 1.5em;
-
 }
 
 .container .new-tweet .red {

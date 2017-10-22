@@ -52,15 +52,10 @@ body {
   position: relative;
   font-style: italic;
   font-size: 100%;
-  /*line-height: 80px;*/
   float: left;
   margin-left: 2em;
   margin-right: 2em;
   width: 350px;
-
-  /*
-  margin: 0px 0px 0px 10px;
-  */
 }
 
 #tweets-container .tweet footer {
@@ -78,10 +73,6 @@ body {
   top: 0px;
   text-indent: 10px;
   padding-top: 18px;
-  /*
-  margin: 0px 0px 0px 10px;
-  line-height: 80px;
-  */
 }
 
 #tweets-container .tweet h2 {
@@ -91,17 +82,6 @@ body {
     position: relative;
     top: 0px;
     margin-top: 10px;
-  /*
-    overflow: hidden;
-  background-color: black;
-  color: #e8fdff;
-  left: 0px;
-  top: 0px;
-  position: relative;
-  float: left;
-  margin: 0px 0px 10px 50px;
-  text-align: left;
-  height: 40px;*/
 }
 
 #tweets-container .tweet h3 {
@@ -124,7 +104,6 @@ body {
     top: 30px;
     left: -60px;
     width: 405px;
-    /*font-size: 150%;*/
     height:160px;
 }
 
@@ -135,40 +114,16 @@ body {
   margin-left: 250px;
   left: -150px;
   top: 28px;
-  /*width: 25px;
-  left: 170px;
-  position: relative;
-  text-align: left;*/
 }
 
 #tweets-container .tweet p.btn-like-id{
   top: -323px;
   left: 280px;
-  /*
-  margin-top: -10px;
-  top:-25px;
-  left: 277px;
-  float left;
-  position: relative;
-  width: 25px;
-  */
-
-
 }
 
 #tweets-container .tweet p.btn-retw-id{
   top: -148px;
   left: 250px;
-  /*
-  margin-top: -10px;
-  top:-25px;
-  left: 277px;
-  float left;
-  position: relative;
-  width: 25px;
-  */
-
-
 }
 
 #tweets-container .tweet .profile-pic{
@@ -187,8 +142,6 @@ body {
 }
 
 #tweets-container .btn-flag {
-  /*width: 25px;
-  height: 25px;*/
   float: right;
   position: relative;
   margin-right: 90px;
@@ -196,10 +149,6 @@ body {
 }
 
 #tweets-container .btn-retweet {
-  /*width: 25px;
-  height: 25px;
-  float: right;*/
-  /*margin-right: -80px;*/
   position: relative;
   top: -15px;
   left: 130px;
@@ -213,8 +162,6 @@ body {
 }
 
 #tweets-container .btn-like {
-  /*width: 25px;
-  height: 25px;*/
   float: right;
   position: relative;
   margin-right: -110px;
