@@ -39,7 +39,7 @@ Tweets scroll vertically across the page for easy reading.
 Compose new tweets!
 !["Screenshot of a new tweet being composed"](https://github.com/d-mclean/tweeter/blob/master/docs/new-tweet.png)
 
-Basic warning system to invalid tweets.
+Basic warning system for invalid tweets.
 !["Screenshot of tweet error handling"](https://github.com/d-mclean/tweeter/blob/master/docs/new-tweet-error.png)
 
 Flag bad tweets!
