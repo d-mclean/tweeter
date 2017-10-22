@@ -30,7 +30,7 @@ This program should be executed from the command line, in the following manner:
 - Moment
 
 ## Screenshots
-
+!["View all tweets on the home page!"](https://github.com/d-mclean/tweeter/blob/master/docs/home-page.png)!
 
 ## Acknowledgements
 
