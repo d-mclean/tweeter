@@ -18,14 +18,19 @@ This program should be executed from the command line, in the following manner:
 
 1. Click compose to send out new tweets!
 2. View tweets in descending order so the newest is at the top.
-3. Animated buttons available to like, retweet or flag tweets.
+3. Animated buttons available to like, retweet or flag tweets!
 4. Random information generated to simulate multiple users.
+5. Tweets saved to a local Mongo DB.
+6. Keeps track of the tweet length, ensuring 140 characters or less and notifying the user of any problems.
 
 ## Dependencies
 
 - Express
 - Node 5.10.x or above
 - Moment
+
+## Screenshots
+
 
 ## Acknowledgements
 
