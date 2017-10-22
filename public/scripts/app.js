@@ -13,24 +13,58 @@ returning a tweet <article> element containing the entire HTML structure of the 
 // String used for displaying messages to the user.
 let strMsg = '';
 
+// This function creates the html element for the given record (tweet).
 function createTweetElement(objTweet){
 
   let $tweet = $('<article></article>').addClass('tweet')
   .append(`<header><h2>${escape(objTweet.user.name)}</h2> <h3>${escape(objTweet.user.handle)}</h3></header>`)
   .append(`<img class = \'profile-pic\' src=\'${escape(objTweet.user.avatars.small)}\'>`)
-  .append(`<p>${escape(objTweet.content.text)}</p>`)
+  .append(`<p >${escape(objTweet.content.text)}</p>`)
   .append(`<footer>${escape(dateDiff(objTweet.created_at))}</footer>`)
-  .append(`<a class = \'btn-flag ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>flag</a>`)
-  .append(`<a class = \'btn-retweet ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>retweet</a>`)
-  .append(`<a class = \'btn-like ${escape(objTweet._id)}\' href=\'#\' style=\'opacity:0\'>like</a>`);
+  .append(`<div id=\'div-btns\'><p title=\'flag\' class=\'btn-flag-id ${escape(objTweet._id)}\' id=\'id-flag-${escape(objTweet._id)}\'href=\'#\' style=\'opacity:0\'>👍 </p>
+    <p title=\'retweet\' class=\'btn-retw-id ${escape(objTweet._id)}\' id=\'id-retw-${escape(objTweet._id)}\'href=\'#\' style=\'opacity:0\'>🗨</p>
+    <p title=\'like\' class=\'btn-like-id ${escape(objTweet._id)}\' id=\'id-like-${escape(objTweet._id)}\'href=\'#\' style=\'opacity:0\'>😐</p></div>`)
+
 
   // Add hover functionality to display buttons when hovering.
   $tweet.hover(
     function() {
-      //$('#tweets-container .btn-flag, .btn-retweet, .btn-like').fadeTo(200,1);
       $(`#tweets-container .${escape(objTweet._id)}`).fadeTo(200,1);
     }, function () {
       $(`#tweets-container .${escape(objTweet._id)}`).fadeTo(200,0);
+    });
+
+  // Add click handling to the 'like' button which rotates the emoticon via fadein/outs.
+  $tweet.children('div').click(
+    function (event) {
+      // The tweet buttons have values: like, flag, retw(eet).
+      tweetBtn = `#${event.target.id}`;
+      let iconA;
+      let iconB;
+
+      // Switch the type buttons to determine the appropriate emoticons to use.
+      switch (tweetBtn.substr(4, 4)){
+        case `flag`:
+          iconA = `👎`;
+          iconB = `👍`;
+        break;
+        case `like`:
+          iconA = `😄 x1`;
+          iconB = `😐`;
+        break;
+        case `retw`:
+          iconA = `🗨`;
+          iconB = `🔁`;
+        break;
+        default:
+          // No op.
+        break;
+      }
+
+      // Rotate the images with fadeout/fadeins.
+      $(tweetBtn).fadeOut(function () {
+        $(tweetBtn).text(($(tweetBtn).text() == iconA) ? iconB : iconA).fadeIn();
+      })
     });
 
   return ($tweet);
@@ -173,7 +207,6 @@ $('.new-tweet input').click(function() {
       url: '/tweets',
       dataType: 'json',
       success: function(results){
-        //console.log(results);
         removeTweets();
         //jsonTweets = $.parseJSON(results);
         //jsonTweets = JSON.parse(results);

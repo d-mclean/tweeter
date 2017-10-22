@@ -12,14 +12,9 @@ const moment = require('moment');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// The in-memory database of tweets. It's a basic object with an array in it.
-//const db = require("./lib/in-memory-db");
-//////////////////////////////////////////////////////////ORIGINAL CODE ABOVE
-// const db = require("./lib/mongo-db");
-
 const {MongoClient} = require("mongodb");
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
-//let db;
+
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err) {
     console.error(`Failed to connect: ${MONGODB_URI}`);
@@ -42,25 +37,4 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   app.listen(PORT, () => {
     console.log("Example app listening on port " + PORT);
   });
-
-
-
-
-  // ==> In typical node-callback style, any program
-  //     logic that needs to use the connection needs
-  //     to be invoked from within here.
-  //
-  // Another way to say: this is an "entry point" for
-  // a database-connected application!
-
-  // ==> Refactored and wrapped as new, tweet-specific function:
-  // function getTweets(callback) {
-  //   db.collection("tweets").find().toArray(callback);
-  // }
-
-  // ==> Later it can be invoked. Remember even if you pass
-  //     `getTweets` to another scope, it still has closure over
-  //     `db`, so it will still work. Yay!
-
-
 });

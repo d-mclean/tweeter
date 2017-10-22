@@ -111,6 +111,8 @@ body {
     position: relative;
     top: 0px;
     margin-top: -40px;
+    font-style: normal;
+    font-size: 90%;
 }
 
 
@@ -126,6 +128,49 @@ body {
     height:160px;
 }
 
+#tweets-container .tweet p.btn-flag-id{
+  margin-top: -10px;
+
+  background-color: yellow
+  margin-left: 250px;
+  left: -150px;
+  top: 28px;
+  /*width: 25px;
+  left: 170px;
+  position: relative;
+  text-align: left;*/
+}
+
+#tweets-container .tweet p.btn-like-id{
+  top: -323px;
+  left: 280px;
+  /*
+  margin-top: -10px;
+  top:-25px;
+  left: 277px;
+  float left;
+  position: relative;
+  width: 25px;
+  */
+
+
+}
+
+#tweets-container .tweet p.btn-retw-id{
+  top: -148px;
+  left: 250px;
+  /*
+  margin-top: -10px;
+  top:-25px;
+  left: 277px;
+  float left;
+  position: relative;
+  width: 25px;
+  */
+
+
+}
+
 #tweets-container .tweet .profile-pic{
   background-color: gray;
   width: 80px;
@@ -135,6 +180,10 @@ body {
   left: 0px;
   top: -80px;
   padding: 10px;
+}
+
+#tweets-container .tweet div {
+  position: relative;
 }
 
 #tweets-container .btn-flag {
@@ -148,11 +197,19 @@ body {
 
 #tweets-container .btn-retweet {
   /*width: 25px;
-  height: 25px;*/
-  float: right;
+  height: 25px;
+  float: right;*/
+  /*margin-right: -80px;*/
   position: relative;
-  margin-right: -80px;
-  top: -18px;
+  top: -15px;
+  left: 130px;
+}
+
+#tweets-container .btn-flagtweet {
+  opacity: 0;
+  position: relative;
+  left: 80px;
+  top: -15px;
 }
 
 #tweets-container .btn-like {
@@ -165,12 +222,12 @@ body {
 }
 
 
-#tweets-container .btn-flag, .btn-retweet, .btn-like {
+#tweets-container .btn-flag, .btn-retweet, .btn-like, .btn-flagtweet {
   background-color: powderblue;
   transition: background-color .5s;
 }
 
-#tweets-container .btn-flag:hover, .btn-retweet:hover, .btn-like:hover {
+#tweets-container .btn-flag:hover, .btn-retweet:hover, .btn-like:hover, .btn-flagtweet:hover {
   background-color: gold;
 }
 

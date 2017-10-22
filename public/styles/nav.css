@@ -8,7 +8,6 @@
   height: 80px;
   width: 100%;
   position: fixed;
-  font-style: italic;
   font-size: 200%;
   /*line-height: 80px;*/
   float: left;
@@ -35,7 +34,6 @@
   color: #e8fdff;
   height: 80px;
   position: fixed;
-  font-style: italic;
   font-size: 100%;
   line-height: 80px;
   float: left;
