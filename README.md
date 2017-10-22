@@ -30,25 +30,25 @@ This program should be executed from the command line, in the following manner:
 - Moment
 
 ## Screenshots
-View all tweets on the home page.
+View all tweets on the home page!
 !["Screenshot of tweeter home page"](https://github.com/d-mclean/tweeter/blob/master/docs/home-page.png)
 
 Tweets scroll vertically across the page for easy reading.
 !["Screenshot of multiple tweets"](https://github.com/d-mclean/tweeter/blob/master/docs/multiple-tweets.png)
 
-Compose new tweets.
+Compose new tweets!
 !["Screenshot of a new tweet being composed"](https://github.com/d-mclean/tweeter/blob/master/docs/new-tweet.png)
 
 Basic warning system to invalid tweets.
 !["Screenshot of tweet error handling"](https://github.com/d-mclean/tweeter/blob/master/docs/new-tweet-error.png)
 
-Flag bad tweets.
+Flag bad tweets!
 !["Screenshot of flagging a tweet"](https://github.com/d-mclean/tweeter/blob/master/docs/flag-tweet.png)
 
-Retweet interesting tweets.
+Retweet interesting tweets!
 !["Screenshot of retweeting"](https://github.com/d-mclean/tweeter/blob/master/docs/retweet-tweet.png)
 
-Like your favourite tweets.
+Like your favourite tweets!
 !["Screenshot of liking a tweet"](https://github.com/d-mclean/tweeter/blob/master/docs/like-tweet.png)
 
 ## Acknowledgements
